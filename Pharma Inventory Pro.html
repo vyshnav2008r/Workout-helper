@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)file:///D:/ondrive/Desktop/HI/avocado.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharma Inventory Pro</title>
+    <script src="./Pharma Inventory Pro_files/xlsx.full.min.js.download"></script>
+    <style>
+        body { font-family: sans-serif; margin: 20px; background: #eceff1; }
+        .card { max-width: 1000px; margin: auto; background: white; padding: 20px; border-radius: 12px; shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .controls { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; background: #f8f9fa; padding: 15px; border-radius: 8px; }
+        input, select { padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px; }
+        button { padding: 10px 20px; cursor: pointer; border-radius: 5px; border: none; font-weight: bold; }
+        .add-btn { background: #2e7d32; color: white; }
+        .dl-btn { background: #1565c0; color: white; width: 100%; margin-top: 20px; font-size: 16px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; background: white; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: center; }
+        th { background: #37474f; color: white; }
+        tr:nth-child(even) { background: #f2f2f2; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Medicine Dispatch Tracker</h2>
+    
+    <div class="controls">
+        <select id="pharma">
+            <option>MASS</option>
+            <option>PHARMACARE</option>
+            <option>PHARMACENTER</option>
+            <option>NF</option>
+            <option>MODERN</option>
+        </select>
+
+        <input list="meds" id="medInput" placeholder="Search Medicine..." style="flex-grow: 1;">
+        <datalist id="meds"><option value="AVACLOX CV 625"></option><option value="AVOBEST"></option><option value="AVOBEST XT"></option><option value="AVOCARE"></option><option value="AVOCORT 6"></option><option value="AVOGLIPT 20"></option><option value="AVOGLIPT M"></option><option value="AVOREX"></option><option value="AVOREX LS"></option><option value="BINEST 20"></option><option value="BINEST M"></option><option value="CILNIVAS 5"></option><option value="CILNIVAS T"></option><option value="CILNIVAS-10"></option><option value="COOLNAC"></option><option value="COOLNAC GEL"></option><option value="COOLNAC S"></option><option value="COOLNAC TH"></option><option value="COOLNAC-P"></option><option value="COOLNAC-SP"></option><option value="DOGRA"></option><option value="DOXIMINE"></option><option value="ESDOZ -D"></option><option value="ESDOZ-40"></option><option value="F POD 100 SYRUP"></option><option value="F POD 200"></option><option value="F POD CV"></option><option value="FNR PLUS 10 "></option><option value="FNR-10"></option><option value="FNR-5"></option><option value="GABAMA"></option><option value="GABAMA FORTE"></option><option value="GABAMA NT 100"></option><option value="GABAMA NT 400"></option><option value="GABAMA PLUS"></option><option value="HOPE"></option><option value="LEMOCAL"></option><option value="LENEST"></option><option value="LENEST M"></option><option value="LENEST M KID"></option><option value="LENEST M SYP"></option><option value="MP CORT 8"></option><option value="MPCORT- 4"></option><option value="NEST AX SY"></option><option value="NEST AX TAB"></option><option value="NEST SYRUP"></option><option value="PANDOZ 10*15"></option><option value="PANDOZ DSR"></option><option value="PEGION NT"></option><option value="POLEX"></option><option value="QUIL HEAL"></option><option value="URICADO"></option><option value="VENBRO 100"></option><option value="VENTBRO-N"></option></datalist>
+
+        <input type="number" id="qty" placeholder="Qty" style="width: 70px;">
+        <button class="add-btn" onclick="addRow()">Add to List</button>
+    </div>
+
+    <table id="mainTable">
+        <thead>
+            <tr>
+                <th style="text-align:left;">Medicine Name</th>
+                <th>MASS</th>
+                <th>PHARMACARE</th>
+                <th>PHARMACENTER</th>
+                <th>NF</th>
+                <th>MODERN</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody"><tr><td style="text-align:left; font-weight:bold;">AVOGLIPT M</td><td>20</td><td>20</td><td>20</td><td>20</td><td>20</td></tr><tr><td style="text-align:left; font-weight:bold;">AVOREX</td><td>0</td><td>0</td><td>20</td><td>0</td><td>0</td></tr><tr><td style="text-align:left; font-weight:bold;">F POD 200</td><td>0</td><td>0</td><td>20</td><td>0</td><td>0</td></tr><tr><td style="text-align:left; font-weight:bold;">CILNIVAS T</td><td>0</td><td>0</td><td>30</td><td>0</td><td>0</td></tr><tr><td style="text-align:left; font-weight:bold;">AVOREX LS</td><td>0</td><td>0</td><td>3</td><td>0</td><td>0</td></tr><tr><td style="text-align:left; font-weight:bold;">COOLNAC</td><td>0</td><td>0</td><td>3</td><td>0</td><td>0</td></tr><tr><td style="text-align:left; font-weight:bold;">AVOCARE</td><td>0</td><td>0</td><td>20</td><td>0</td><td>0</td></tr></tbody>
+    </table>
+
+    <button class="dl-btn" onclick="downloadExcel()">💾 SAVE TO EXCEL (.xlsx)</button>
+</div>
+
+<script>
+    const medicineList = ['AVACLOX CV 625', 'AVOBEST', 'AVOBEST XT', 'AVOCARE', 'AVOCORT 6', 'AVOGLIPT 20', 'AVOGLIPT M', 'AVOREX', 'AVOREX LS', 'BINEST 20', 'BINEST M', 'CILNIVAS 5', 'CILNIVAS T', 'CILNIVAS-10', 'COOLNAC', 'COOLNAC GEL', 'COOLNAC S', 'COOLNAC TH', 'COOLNAC-P', 'COOLNAC-SP', 'DOGRA', 'DOXIMINE', 'ESDOZ -D', 'ESDOZ-40', 'F POD 100 SYRUP', 'F POD 200', 'F POD CV', 'FNR PLUS 10 ', 'FNR-10', 'FNR-5', 'GABAMA', 'GABAMA FORTE', 'GABAMA NT 100', 'GABAMA NT 400', 'GABAMA PLUS', 'HOPE', 'LEMOCAL', 'LENEST', 'LENEST M', 'LENEST M KID', 'LENEST M SYP', 'MP CORT 8', 'MPCORT- 4', 'NEST AX SY', 'NEST AX TAB', 'NEST SYRUP', 'PANDOZ 10*15', 'PANDOZ DSR', 'PEGION NT', 'POLEX', 'QUIL HEAL', 'URICADO', 'VENBRO 100', 'VENTBRO-N'];
+    const pharmas = ["MASS", "PHARMACARE", "PHARMACENTER", "NF", "MODERN"];
+    let dataStore = {};
+
+    // Load datalist
+    const dl = document.getElementById('meds');
+    medicineList.forEach(m => { let op = document.createElement('option'); op.value = m; dl.appendChild(op); });
+
+    function addRow() {
+        const m = document.getElementById('medInput').value.trim();
+        const p = document.getElementById('pharma').value;
+        const q = parseInt(document.getElementById('qty').value);
+
+        if(!m || isNaN(q)) return alert("Enter medicine and quantity!");
+
+        if(!dataStore[m]) dataStore[m] = { MASS:0, PHARMACARE:0, PHARMACENTER:0, NF:0, MODERN:0 };
+        dataStore[m][p] += q;
+
+        updateTable();
+        document.getElementById('medInput').value = "";
+        document.getElementById('qty').value = "";
+    }
+
+    function updateTable() {
+        const body = document.getElementById('tableBody');
+        body.innerHTML = "";
+        for (const [name, counts] of Object.entries(dataStore)) {
+            let row = `<tr><td style="text-align:left; font-weight:bold;">${name}</td>`;
+            pharmas.forEach(ph => row += `<td>${counts[ph]}</td>`);
+            row += "</tr>";
+            body.innerHTML += row;
+        }
+    }
+
+    function downloadExcel() {
+        if(Object.keys(dataStore).length === 0) return alert("No data to export!");
+        
+        try {
+            const table = document.getElementById("mainTable");
+            const workbook = XLSX.utils.table_to_book(table);
+            XLSX.writeFile(workbook, "Pharma_Stock_Report.xlsx");
+        } catch (e) {
+            alert("Error: If you are offline, the Excel tool cannot load. Please connect to the internet once to load the script.");
+        }
+    }
+</script>
+
+
+</body></html>

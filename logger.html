@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Workout Logger</title>
+    <link rel="stylesheet" href="logger.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <h1>Workout Logger</h1>
+
+    <div class="form">
+        <input type="text" id="exercise" placeholder="Exercise Name">
+        <input type="number" id="weight" placeholder="Weight (kg)">
+        <input type="number" id="reps" placeholder="Reps">
+        <input type="number" id="sets" placeholder="Sets">
+        <button onclick="saveWorkout()">Save Workout</button>
+    </div>
+
+    <h2>Workout History</h2>
+    <h2>Progress Graph</h2>
+<canvas id="progressChart" width="400" height="200"></canvas>
+    <div id="history"></div>
+    <script src="logger.js"></script>
+    
+    
+
+</body>
+</html>

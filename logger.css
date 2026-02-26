@@ -1,0 +1,43 @@
+body {
+    background: black;
+    color: white;
+    font-family: Arial;
+    text-align: center;
+}
+
+h1 {
+    color: red;
+    text-shadow: 0 0 10px red;
+}
+
+.exercise {
+    margin: 30px;
+}
+
+input {
+    padding: 8px;
+    margin: 5px;
+    background: #111;
+    color: white;
+    border: 1px solid red;
+}
+
+button {
+    padding: 8px 15px;
+    background: red;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    box-shadow: 0 0 10px red;
+}
+
+.history-card {
+    background: #111;
+    border: 1px solid red;
+    margin: 10px auto;
+    padding: 10px;
+    width: 300px;
+}

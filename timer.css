@@ -1,0 +1,82 @@
+body {
+    background: black;
+    color: white;
+    font-family: Arial;
+    text-align: center;
+}
+
+h1 {
+    color: red;
+    text-shadow: 0 0 10px red;
+}
+
+.exercise {
+    margin: 30px;
+}
+
+input {
+    padding: 8px;
+    margin: 5px;
+    background: #111;
+    color: white;
+    border: 1px solid red;
+}
+
+button {
+    padding: 8px 15px;
+    background: red;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    box-shadow: 0 0 10px red;
+}
+
+.history-card {
+    background: #111;
+    border: 1px solid red;
+    margin: 10px auto;
+    padding: 10px;
+    width: 300px;
+}
+.timer-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+}
+
+.timer-svg {
+    transform: scaleX(-1); /* Flips the timer to run clockwise */
+}
+
+.timer-path-elapsed {
+    stroke-width: 7px;
+    stroke: #333; /* Dark background circle */
+    fill: none;
+}
+
+.timer-path-remaining {
+    stroke-width: 7px;
+    stroke-linecap: round;
+    transform: rotate(90deg);
+    transform-origin: center;
+    transition: 1s linear all;
+    fill: none;
+    stroke: red; /* Our theme color */
+}
+
+.timer-label {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    color: white;
+    font-weight: bold;
+}
